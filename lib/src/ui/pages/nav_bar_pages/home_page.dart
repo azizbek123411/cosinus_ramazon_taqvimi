@@ -62,7 +62,6 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _startTimer();
   }
@@ -145,7 +144,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 HBox(16.h),
                 Container(
                   padding: Dis.only(tb: 16.h),
-                  height: 490.h,
+                  height: 500.h,
                   width: 345.w,
                   decoration: BoxDecoration(
                     color: AppColors.colorF4DEBD,
@@ -181,7 +180,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                               ),
                             ],
                           ),
-                          radius: 150,
+                          radius: 130.h,
                           lineWidth: 30,
                           percent: percent,
                           animateFromLastPercent: true,

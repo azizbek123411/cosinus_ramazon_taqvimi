@@ -4,6 +4,7 @@ import 'package:cosinus_ramazon_taqvimi/src/ui/pages/splash_page/scroll_pag.dart
 import 'package:cosinus_ramazon_taqvimi/src/ui/pages/splash_page/splash_screen.dart';
 import 'package:cosinus_ramazon_taqvimi/src/ui/pages/splash_page/splashscreenn.dart';
 import 'package:cosinus_ramazon_taqvimi/src/ui/pages/splash_page/time_location.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
@@ -23,6 +24,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp();
   await Hive.initFlutter();
   var box = Hive.openBox("address");
 

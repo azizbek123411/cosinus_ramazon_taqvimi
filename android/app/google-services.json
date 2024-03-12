@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "104837261764",
+    "project_id": "cosinus-taqvim",
+    "storage_bucket": "cosinus-taqvim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104837261764:android:8dbf70ce4ce669d4971c91",
+        "android_client_info": {
+          "package_name": "com.example.cosinus_ramazon_taqvimi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs9ZotBjlDyCJvECaSZh6rq_5M4KlifVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

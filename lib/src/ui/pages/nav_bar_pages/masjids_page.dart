@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:map_launcher/map_launcher.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 import '../../../config/appColors.dart';
 import '../../../config/font_size.dart';
@@ -40,24 +40,16 @@ class _MasjidsPageState extends ConsumerState<MasjidsPage> {
     return await Geolocator.getCurrentPosition();
   }
 
-  Future<void> launchMap({required double lat,required double lng,required String title}) async {
 
-    try {
-      final availableMaps = await MapLauncher.installedMaps;
-      if (availableMaps.isNotEmpty) {
-        await availableMaps.first.showMarker(
-          coords: Coords(lat, lng),
-          title: title,
-        );
-      } else {
-        // Handle the case when no maps are installed
-        print("No maps installed on this device.");
-      }
-    } catch (e) {
-      print("Error launching map: $e");
+Future<void> launchMap({
+    required double lat,required double lng
+})async{
+    try{
+MapsLauncher.launchCoordinates(lat, lng);
+    }catch(e,st){
+      log( e.toString(),stackTrace: st);
     }
-  }
-
+}
   @override
   Widget build(BuildContext context) {
     final provider = ref.watch(distanceProvider);
@@ -92,11 +84,12 @@ class _MasjidsPageState extends ConsumerState<MasjidsPage> {
         return FlutterMap(
             mapController: _controller,
             options: MapOptions(
-              initialCenter: const LatLng(
-                41.2744398,
-                69.2004313,
-                // currentLocation?.latitude ?? 0,
-                // currentLocation?.longitude ?? 0,
+              minZoom: 9,
+              maxZoom: 19,
+              keepAlive: true,
+              initialCenter:  LatLng(
+                currentLocation?.latitude ?? 0,
+                currentLocation?.longitude ?? 0,
               ),
               initialZoom: zoom,
             ),
@@ -115,7 +108,7 @@ class _MasjidsPageState extends ConsumerState<MasjidsPage> {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                       launchMap(lat: item.lat, lng: item.long, title: item.name);
+                       launchMap(lat: item.lat, lng: item.long, );
                         },
                         child: SvgPicture.asset(
                           "assets/svg/mosque-_1_ 3.svg",
@@ -126,16 +119,14 @@ class _MasjidsPageState extends ConsumerState<MasjidsPage> {
                     ),
                   ],
                 ),
-              const MarkerLayer(
+               MarkerLayer(
                 markers: [
                   Marker(
                     point: LatLng(
-                      41.2744398,
-                      69.2004313,
-                      // currentLocation?.latitude ?? 0,
-                      // currentLocation?.longitude ?? 0,
+                      currentLocation?.latitude ?? 0,
+                      currentLocation?.longitude ?? 0,
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.location_on_rounded,
                       color: Colors.red,
                       size: 31,
@@ -147,7 +138,7 @@ class _MasjidsPageState extends ConsumerState<MasjidsPage> {
       }, error: (error, st) {
         return Text(error.toString(),);
       }, loading: () {
-        return CircularProgressIndicator();
+        return const CircularProgressIndicator();
       }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.mainGreen,
@@ -158,11 +149,10 @@ class _MasjidsPageState extends ConsumerState<MasjidsPage> {
             zoom = 16;
           });
           _controller.move(
-             const  LatLng(
-                41.2744398,
-                69.2004313,
-                // currentLocation?.latitude ?? 0,
-                // currentLocation?.longitude ?? 0,
+               LatLng(
+
+                currentLocation?.latitude ?? 0,
+                currentLocation?.longitude ?? 0,
               ),
               zoom);
           log("$currentLocation");

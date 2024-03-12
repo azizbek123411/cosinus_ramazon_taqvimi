@@ -30,6 +30,7 @@ class BottomSheetHOme extends StatelessWidget {
         bottom: 20.h,
       ),
       height: h,
+      width: double.infinity,
       decoration: BoxDecoration(
         gradient: AppColors.mainGreenGradient,
         borderRadius: const BorderRadius.only(
