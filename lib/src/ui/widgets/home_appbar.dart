@@ -83,17 +83,12 @@ class HomeAppBar extends ConsumerWidget {
           log('Waiting');
         }),
         actions: [
-          TextButton(
-            onPressed: () {
-              AppRouter.go(context, const TimeSettings());
-            },
-            child: Text(
+           Text(
               _mybox.get(1) ?? "",
               style: AppTextStyle.instance.w700.copyWith(
                   fontSize: FontSizeConst.instance.largeFont,
                   color: AppColors.whiteColor),
             ),
-          ),
         ],
       ),
     );

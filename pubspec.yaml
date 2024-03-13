@@ -51,7 +51,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   maps_launcher: ^2.2.1
   flutter_telegram_web_app: ^0.0.1
-  firebase_core: ^2.24.2
+
 
 dev_dependencies:
   flutter_test:

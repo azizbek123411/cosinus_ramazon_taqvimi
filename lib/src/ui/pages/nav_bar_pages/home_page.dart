@@ -31,45 +31,9 @@ class HomePage extends StatefulHookConsumerWidget {
 
 
 class _HomePageState extends ConsumerState<HomePage> {
-  double percent=0;
-  late Timer timer;
- static  DateTime saharTime=DateTime(2024,3,12,4,20);
-  final untilSahar=saharTime.difference(DateTime.now());
-  _startTimer(){
-    int timeInMinut=10;
-   int time=timeInMinut*60;
-    double secPercent=(time/100);
-    timer=Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if(time>0){
-          time--;
-          if(time%60==0){
-            timeInMinut--;
-          }if(time%secPercent==0){
-            if(percent<1){
-              percent+=0.1;
-            }else{
-              percent=1;
-            }
-          }
-        }else{
-          percent=0;
-          timeInMinut=10;
-          timer.cancel();
-        }
-      });
-    });
-  }
-  @override
-  void initState() {
-    super.initState();
-    _startTimer();
-  }
-  String formatDuration(Duration duration){
-    final hours=duration.inHours;
-    final minutes=duration.inMinutes;
-    return "$hours : $minutes";
-  }
+
+
+
   @override
   Widget build(BuildContext context) {
     final provider = ref.watch(namozTimes);
@@ -80,9 +44,9 @@ class _HomePageState extends ConsumerState<HomePage> {
         preferredSize: Size(double.infinity, 110.h),
         child: const HomeAppBar(),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: Dis.only(lr: 20.w),
+      body: Padding(
+        padding: Dis.only(lr: 20.w),
+        child: SingleChildScrollView(
           child: provider.when(data: (data) {
             return Column(
               children: [
@@ -91,7 +55,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   height: 90.h,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: data.length,
+                      itemCount:10,
                       itemBuilder: (context, index) {
 
                          data.removeWhere((element)=> element!.date.day<dayIndex);
@@ -100,8 +64,8 @@ class _HomePageState extends ConsumerState<HomePage> {
 
                              return DateTime.now().day != data[index]!.date.day
                                 ? DateScreen(
-                              weekday: data[index]!.weekday,
-                              day: data[index]!.date.day.toString(),
+                              weekday: data[index]?.weekday??"",
+                              day: data[index]?.date.day.toString()??"",
                               onTap: () {
                                 setState(() {
                                   dayIndex=data[index]!.date.day;
@@ -118,7 +82,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      data[index]!.date.day.toString(),
+                                      data[index]?.date.day.toString()??"",
                                       style: AppTextStyle.instance.w700
                                           .copyWith(
                                           fontSize: FontSizeConst
@@ -126,7 +90,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                           color: AppColors.whiteColor),
                                     ),
                                     Text(
-                                      data[index]!.weekday,
+                                      data[index]?.weekday??"",
                                       style: AppTextStyle.instance.w700
                                           .copyWith(
                                           fontSize: FontSizeConst
@@ -182,7 +146,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ),
                           radius: 130.h,
                           lineWidth: 30,
-                          percent: percent,
+                          percent: 1,
                           animateFromLastPercent: true,
                           animation: true,
                           circularStrokeCap: CircularStrokeCap.round,
@@ -195,13 +159,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                        children: [
                          MainGreenButton(
                            onTap: () {
-                             if(int.parse(data[dayIndex]!.saharlik.split("")[0])==0){
-                               print(true);
-                             }else{
-                               print(false);
-                               print(formatDuration(untilSahar));
-                             }
-                             print(data[dayIndex]!.xufton.split("")[0]+data[dayIndex]!.xufton.split("")[1]);
                              showModalBottomSheet(
                                  context: context,
                                  builder: (BuildContext context) {
@@ -216,7 +173,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                  });
                            },
                            h: 70.h,
-                           w: 150.w,
+                           w: 120.w,
                            radius: 8,
                            child: Column(
                              crossAxisAlignment: CrossAxisAlignment.center,
@@ -256,13 +213,13 @@ class _HomePageState extends ConsumerState<HomePage> {
                              );
                            },
                            h: 70.h,
-                           w: 150.w,
+                           w: 120.w,
                            radius: 8,
                            child: Column(
                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                              children: [
                                Text(
-                                 data[dayIndex]!.xufton.toString(),
+                                 data[dayIndex]?.xufton.toString()??"",
                                  style: AppTextStyle.instance.w700.copyWith(
                                      fontSize:
                                      FontSizeConst.instance.mediumFont,

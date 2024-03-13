@@ -138,7 +138,7 @@ MapsLauncher.launchCoordinates(lat, lng);
       }, error: (error, st) {
         return Text(error.toString(),);
       }, loading: () {
-        return const CircularProgressIndicator();
+        log("waiting");
       }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.mainGreen,

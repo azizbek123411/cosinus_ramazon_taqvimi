@@ -8,6 +8,7 @@ import '../../../repository/utils/app_padding.dart';
 import '../../screens/settings_screens/azon_settings.dart';
 import '../../screens/settings_screens/connect_screen.dart';
 import '../../screens/settings_screens/language_settings.dart';
+import '../../screens/settings_screens/time_settings.dart';
 import '../../widgets/settings_list_tile.dart';
 import '../splash_page/time_location.dart';
 
@@ -46,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 color: AppColors.blackColor,
               ),
               onTap: () {
-                AppRouter.go(context, const TimeLocation());
+                AppRouter.go(context, const TimeSettings());
               },
               title: "time_settings".tr(),
             ),

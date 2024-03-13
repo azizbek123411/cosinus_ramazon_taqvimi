@@ -131,7 +131,8 @@ class _TimeLocationState extends State<TimeLocation> {
                       ];
                     },
                   ),
-                  hintText: TimeLocation.controller.text,
+                  // hintText: TimeLocation.controller.text,
+                  hintText: "Shahringizni kiriting",
                   hintStyle: AppTextStyle.instance.w500.copyWith(
                       color: AppColors.mainGreen,
                       fontSize: FontSizeConst.instance.mediumFont),
