@@ -2,7 +2,7 @@
   "on_scroll_page_title": "Muqaddas Ramazon oyi ",
   "on_scroll_page_body": "“Ramazon oyi – odamlar uchun hidoyat (manbai) va to‘g‘ri yo‘l hamda ajrim etuvchi hujjatlardan iborat Qur'on nozil qilingan oydir",
   "ramadan_month": "Ramazon Ro'zasi",
-  "for_open_mouth": "Og’iz ochish uchun",
+  "for_open_mouth": "Iftorlik uchun",
   "close_mouth_pray": "Og’iz yopish duosi",
   "open_mouth_pray": "Og’iz ochish duosi",
   "close_mouth_pray_latin": "Navaytu an asuvma sovma shahri ramazona minal fajri ilal mag‘ribi, xolisan lillahi ta’aalaa Allohu akbar.",
@@ -32,7 +32,8 @@
   "via_email": "Email orqali",
   "via_phone": "Telefon orqali",
   "navbar_home": "Bosh sahifa",
-  "navbar_masjid": "Masjidlar"
+  "navbar_masjid": "Masjidlar",
+  "for_saharlik": "Saharlik uchun"
 
 
 }

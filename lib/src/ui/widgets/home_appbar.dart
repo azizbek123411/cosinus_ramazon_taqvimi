@@ -34,19 +34,19 @@ class HomeAppBar extends ConsumerWidget {
       child: AppBar(
         backgroundColor: Colors.transparent,
         title: provider.when(data: (data) {
-          if (data[dayIndex]!.date.month > 10) {
+          if (DateTime.now().month > 10) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${dayIndex+1}.${data[dayIndex]!.date.month}.${data[dayIndex]!.date.year}",
+                  "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
                   style: AppTextStyle.instance.w700.copyWith(
                     fontSize: FontSizeConst.instance.largeFont,
                     color: AppColors.whiteColor,
                   ),
                 ),
                 Text(
-                  "${{dayIndex+1}} ${data[dayIndex]!.hijriyOy}",
+                  "${{dayIndex-10}} ${data[dayIndex]!.hijriyOy}",
                   style: AppTextStyle.instance.w600.copyWith(
                     fontSize: FontSizeConst.instance.smallFont,
                     color: AppColors.whiteColor,
@@ -60,7 +60,7 @@ class HomeAppBar extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${data[dayIndex]!.date.day}.0${data[dayIndex]!.date.month}.${data[dayIndex]!.date.year}",
+                  "${DateTime.now().day}.0${DateTime.now().month}.${DateTime.now().year}",
                   style: AppTextStyle.instance.w700.copyWith(
                     fontSize: FontSizeConst.instance.largeFont,
                     color: AppColors.whiteColor,

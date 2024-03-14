@@ -27,8 +27,6 @@ class _TimeLocationState extends State<TimeLocation> {
     final _myBox=Hive.box("address");
 
 
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -132,7 +130,7 @@ class _TimeLocationState extends State<TimeLocation> {
                     },
                   ),
                   // hintText: TimeLocation.controller.text,
-                  hintText: "Shahringizni kiriting",
+                  hintText: TimeLocation.controller.text,
                   hintStyle: AppTextStyle.instance.w500.copyWith(
                       color: AppColors.mainGreen,
                       fontSize: FontSizeConst.instance.mediumFont),

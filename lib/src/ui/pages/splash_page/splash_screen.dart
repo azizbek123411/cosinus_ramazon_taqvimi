@@ -21,11 +21,11 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      if(_myBox.isEmpty){
-        AppRouter.id(context, ScrollPage.id);
-      }else{
-        AppRouter.id(context, MainNavpage.id);
-      }
+if(_myBox.isEmpty){
+  AppRouter.id(context, ScrollPage.id);
+}else{
+  AppRouter.id(context, MainNavpage.id);
+}
 
     });
   }

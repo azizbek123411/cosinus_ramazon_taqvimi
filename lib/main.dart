@@ -2,7 +2,6 @@
 import 'package:cosinus_ramazon_taqvimi/src/ui/pages/nav_bar_pages/main_nav_page.dart';
 import 'package:cosinus_ramazon_taqvimi/src/ui/pages/splash_page/scroll_pag.dart';
 import 'package:cosinus_ramazon_taqvimi/src/ui/pages/splash_page/splash_screen.dart';
-import 'package:cosinus_ramazon_taqvimi/src/ui/pages/splash_page/splashscreenn.dart';
 import 'package:cosinus_ramazon_taqvimi/src/ui/pages/splash_page/time_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,7 +25,6 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   var box = Hive.openBox("address");
-
   runApp(
     EasyLocalization(
       fallbackLocale: const Locale("uz", "UZ"),

@@ -11,11 +11,17 @@ import '../service/api_service.dart';
 
 final _myBox=Hive.box("address");
 final namozTimes = FutureProvider<List<PrayModel?>>((ref) async {
-  return await ApiService.getData(city: TimeLocation.controller.text, month: DateTime.now().month,);
+  return await ApiService.getData(city: _myBox.get(1), month: DateTime.now().month,);
 });
+
+
+
 final mosqueProvider=FutureProvider<List<MosqueModel?>>((ref)async{
   return await ApiService.getMosques();
 });
+
+
+
 final distanceProvider=FutureProvider<List<MosqueModel?>>((ref) async{
   return await ApiService.calculateDistances();
 });
