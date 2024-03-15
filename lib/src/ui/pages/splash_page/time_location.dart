@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive/hive.dart';
@@ -65,7 +66,8 @@ class _TimeLocationState extends State<TimeLocation> {
                 ),
               ).tr(),
               HBox(10.h),
-              TextField(readOnly: true,
+              TextField(
+                readOnly: true,
                 controller: TimeLocation.controller,
                 decoration: InputDecoration(
                   suffixIcon: PopupMenuButton(
@@ -129,8 +131,7 @@ class _TimeLocationState extends State<TimeLocation> {
                       ];
                     },
                   ),
-                  // hintText: TimeLocation.controller.text,
-                  hintText: TimeLocation.controller.text,
+                  hintText: "Shahringizni kiriting",
                   hintStyle: AppTextStyle.instance.w500.copyWith(
                       color: AppColors.mainGreen,
                       fontSize: FontSizeConst.instance.mediumFont),
@@ -165,10 +166,10 @@ class _TimeLocationState extends State<TimeLocation> {
                   ),
                   onTap: () {
                     _myBox.put(1, TimeLocation.controller.text);
-                    if (TimeLocation.controller.text.isNotEmpty) {
-                      AppRouter.id(context, MainNavpage.id);
-                    } else {}
-                  }),
+                    AppRouter.id(context, MainNavpage.id);
+              print(_myBox.get(1));
+                  }
+              )
             ],
           ),
         ),

@@ -47,15 +47,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isFirstRun = false;
 
-  @override
-  void initState() {
-    super.initState();
-    isFirstRun().then((value) => setState(() {
-      _isFirstRun = value;
-    }));
-  }
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
@@ -68,8 +60,7 @@ class _MyAppState extends State<MyApp> {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home:  SplashPage(),
-      // home:const LocationPage(),
+      home:  const SplashPage(),
       routes: {
         ScrollPage.id: (context) => const ScrollPage(),
         MainNavpage.id: (context) => const MainNavpage(),

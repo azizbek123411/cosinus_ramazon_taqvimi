@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:cosinus_ramazon_taqvimi/src/repository/utils/screen_utils.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -55,11 +56,10 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     setState(() {
       _currentTime =
-          '${remainingTime.inHours}:${remainingTime.inMinutes.remainder(60)}:${remainingTime.inSeconds.remainder(60)}';
+      '${remainingTime.inHours}:${remainingTime.inMinutes.remainder(60)}:${remainingTime.inSeconds.remainder(60)}';
       _progress = 1 - (remainingTime.inSeconds / Duration.secondsPerDay);
     });
   }
-
   @override
   void dispose() {
     _updateTime();
@@ -67,7 +67,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   DateTime _calculateSaharlikVaqt(DateTime now) {
-    return DateTime(now.year, now.month, now.day, 5, 30);
+    return DateTime(now.year, now.month, now.day, 5, 27);
   }
 
   DateTime _calculateIftorlikVaqt(DateTime now) {
@@ -80,6 +80,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     final provider = ref.watch(namozTimes);
     int dayIndex = DateTime.now().day - 1;
+    int thisdayIndex = DateTime.now().day ;
 
     return Scaffold(
       backgroundColor: AppColors.mainBackground,
@@ -101,27 +102,24 @@ class _HomePageState extends ConsumerState<HomePage> {
                     itemCount: 10,
                     itemBuilder: (context, index) {
                       data.removeWhere(
-                          (element) => element!.date.day < dayIndex);
+                              (element) => element!.date.day < dayIndex);
                       return Padding(
                         padding: Dis.only(lr: 4.w),
                         child: GestureDetector(
                           onTap: () {
-                            setState(() {
                               setState(() {
-                                DateTime.now().day == data[index]!.date.day;
+                                thisdayIndex=data[index]!.date.day;
                               });
-                            });
-                            print(data[index]!.date.day);
+                            print(thisdayIndex);
                           },
                           child: Container(
-                            height: DateTime.now().day != data[index]!.date.day
+                            height:thisdayIndex != data[index]!.date.day
                                 ? 72.h
                                 : 90.h,
-                            width: DateTime.now().day != data[index]!.date.day
-                                ? 75.w
-                                : 100.w,
+                            width:
+                            thisdayIndex != data[index]!.date.day? 75.w : 100.w,
                             decoration: BoxDecoration(
-                              color: DateTime.now().day != data[index]!.date.day
+                              color:thisdayIndex != data[index]!.date.day
                                   ? AppColors.colorF4DEBD
                                   : AppColors.mainGreen,
                               borderRadius: BorderRadius.circular(8),
@@ -131,30 +129,30 @@ class _HomePageState extends ConsumerState<HomePage> {
                               children: [
                                 Text(
                                   data[index]?.date.day.toString() ?? "",
-                                  style: DateTime.now().day !=
-                                          data[index]!.date.day
+                                  style:thisdayIndex !=
+                                      data[index]!.date.day
                                       ? AppTextStyle.instance.w700.copyWith(
-                                          fontSize:
-                                              FontSizeConst.instance.smallFont,
-                                          color: AppColors.blackColor,
-                                        )
+                                    fontSize:
+                                    FontSizeConst.instance.smallFont,
+                                    color: AppColors.blackColor,
+                                  )
                                       : AppTextStyle.instance.w700.copyWith(
-                                          fontSize:
-                                              FontSizeConst.instance.mediumFont,
-                                          color: AppColors.whiteColor),
+                                      fontSize:
+                                      FontSizeConst.instance.mediumFont,
+                                      color: AppColors.whiteColor),
                                 ),
                                 Text(data[index]?.weekday ?? "",
-                                    style: DateTime.now().day !=
-                                            data[index]!.date.day
+                                    style: thisdayIndex !=
+                                        data[index]!.date.day
                                         ? AppTextStyle.instance.w700.copyWith(
-                                            fontSize: FontSizeConst
-                                                .instance.extraSmallFont,
-                                            color: AppColors.blackColor,
-                                          )
+                                      fontSize: FontSizeConst
+                                          .instance.extraSmallFont,
+                                      color: AppColors.blackColor,
+                                    )
                                         : AppTextStyle.instance.w700.copyWith(
-                                            fontSize: FontSizeConst
-                                                .instance.mediumFont,
-                                            color: AppColors.whiteColor)),
+                                        fontSize: FontSizeConst
+                                            .instance.mediumFont,
+                                        color: AppColors.whiteColor)),
                               ],
                             ),
                           ),
@@ -188,7 +186,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                _isSaharlik ? "for_saharlik" : "for_open_mouth",
+                                _isSaharlik ? "for_saharlik":"for_open_mouth" ,
                                 style: AppTextStyle.instance.w400.copyWith(
                                     fontSize: FontSizeConst.instance.mediumFont,
                                     color: AppColors.blackColor),
@@ -197,7 +195,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                 _currentTime,
                                 style: AppTextStyle.instance.w700.copyWith(
                                     fontSize:
-                                        FontSizeConst.instance.extraLargeFont,
+                                    FontSizeConst.instance.extraLargeFont,
                                     color: AppColors.blackColor),
                               ),
                             ],
@@ -224,10 +222,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                                       h: 440.h,
                                       whichPray: 'close_mouth_pray'.tr(),
                                       arabicPray:
-                                          'اَللَّهُمَّ لَكَ صُمْتُ وَ بِكَ آمَنْتُ وَ عَلَيْكَ تَوَكَّلْتُ وَ عَلَى رِزْقِكَ أَفْتَرْتُ، فَغْفِرْلِى مَا قَدَّمْتُ وَ مَا أَخَّرْتُ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ',
+                                      'اَللَّهُمَّ لَكَ صُمْتُ وَ بِكَ آمَنْتُ وَ عَلَيْكَ تَوَكَّلْتُ وَ عَلَى رِزْقِكَ أَفْتَرْتُ، فَغْفِرْلِى مَا قَدَّمْتُ وَ مَا أَخَّرْتُ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ',
                                       latinPray: 'open_mouth_pray_latin'.tr(),
                                       meaningPray:
-                                          'open_mouth_pray_meaning'.tr(),
+                                      'open_mouth_pray_meaning'.tr(),
                                     );
                                   });
                             },
@@ -239,10 +237,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  data[dayIndex - 12]!.saharlik.toString(),
+                                  data[thisdayIndex - 15]!.saharlik.toString(),
                                   style: AppTextStyle.instance.w700.copyWith(
                                       fontSize:
-                                          FontSizeConst.instance.mediumFont,
+                                      FontSizeConst.instance.mediumFont,
                                       color: AppColors.whiteColor),
                                 ),
                                 Text(
@@ -264,10 +262,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     h: 400.h,
                                     whichPray: 'open_mouth_pray'.tr(),
                                     arabicPray:
-                                        'نَوَيْتُ أَنْ أَصُومَ صَوْمَ شَهْرَ رَمَضَانَ مِنَ الْفَجْرِ إِلَى الْمَغْرِبِ، خَالِصًا لِلهِ تَعَالَى أَللهُ أَكْبَرُ',
+                                    'نَوَيْتُ أَنْ أَصُومَ صَوْمَ شَهْرَ رَمَضَانَ مِنَ الْفَجْرِ إِلَى الْمَغْرِبِ، خَالِصًا لِلهِ تَعَالَى أَللهُ أَكْبَرُ',
                                     latinPray: 'close_mouth_pray_latin'.tr(),
                                     meaningPray:
-                                        'close_mouth_pray_meaning'.tr(),
+                                    'close_mouth_pray_meaning'.tr(),
                                   );
                                 },
                               );
@@ -279,10 +277,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  data[dayIndex - 12]?.shom.toString() ?? "",
+                                  data[thisdayIndex - 15]?.shom.toString() ?? "",
                                   style: AppTextStyle.instance.w700.copyWith(
                                       fontSize:
-                                          FontSizeConst.instance.mediumFont,
+                                      FontSizeConst.instance.mediumFont,
                                       color: AppColors.whiteColor),
                                 ),
                                 Text(
@@ -303,21 +301,18 @@ class _HomePageState extends ConsumerState<HomePage> {
               ],
             );
           }, error: (error, st) {
-            return Center(
-              child: Text(
-                error.toString(),
-                style: const TextStyle(fontSize: 20),
-              ),
-            );
+           log(error.toString(),stackTrace: st);
           }, loading: () {
-            return SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.mainGreen,
-                ),
-              ),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.mainGreen,
+                    ),
+                  )
+                ],
             );
           }),
         ),

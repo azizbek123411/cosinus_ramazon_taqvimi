@@ -33,16 +33,16 @@ class NamozListTile extends StatelessWidget {
         leading: SvgPicture.asset("assets/svg/sunset.svg"),
         title: Text(
           namozTiming,
-          style: AppTextStyle.instance.w500.copyWith(
+          style: AppTextStyle.instance.w700.copyWith(
             color: AppColors.blackColor,
-            fontSize: FontSizeConst.instance.smallFont,
+            fontSize: FontSizeConst.instance.mediumFont,
           ),
         ),
         subtitle: Text(
           hours,
-          style: AppTextStyle.instance.w700.copyWith(
+          style: AppTextStyle.instance.w500.copyWith(
             color: AppColors.blackColor,
-            fontSize: FontSizeConst.instance.mediumFont,
+            fontSize: FontSizeConst.instance.smallFont,
           ),
         ),
         trailing: actionIcon,

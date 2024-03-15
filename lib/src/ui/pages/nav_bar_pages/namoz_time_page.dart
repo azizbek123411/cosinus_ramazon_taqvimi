@@ -50,6 +50,7 @@ class _NamozTimeState extends ConsumerState<NamozTime> {
       backgroundColor: AppColors.mainGreen,
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
              SizedBox(
               height: 200.h,
@@ -57,7 +58,8 @@ class _NamozTimeState extends ConsumerState<NamozTime> {
             ),
             Container(
                 padding: Dis.only(lr: 20.w, tb: 10.h),
-                height: 491,
+                height: 500.h,
+                width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(32),
@@ -69,7 +71,7 @@ class _NamozTimeState extends ConsumerState<NamozTime> {
                       itemCount: 1,
                       itemBuilder: (context, index) {
                       return SizedBox(
-                        height: 500,
+                        height: 500.h,
                         child: ListView(
                           children: [
                             NamozListTile(
@@ -161,7 +163,7 @@ class _NamozTimeState extends ConsumerState<NamozTime> {
                     style: const TextStyle(fontSize: 20),
                   );
                 }, loading: () {
-                  return const CircularProgressIndicator();
+                 log("waiting");
                 })),
           ],
         ),

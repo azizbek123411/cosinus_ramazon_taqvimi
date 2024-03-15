@@ -77,14 +77,14 @@ class HomeAppBar extends ConsumerWidget {
             );
           }
         }, error: (error, st) {
-          return Text(error.toString());
+          log("AppBar error:$error",stackTrace: st);
           // log(error.toString());
         }, loading: () {
           log('Waiting');
         }),
         actions: [
            Text(
-              _mybox.get(1) ?? "",
+              _mybox.get(1),
               style: AppTextStyle.instance.w700.copyWith(
                   fontSize: FontSizeConst.instance.largeFont,
                   color: AppColors.whiteColor),
