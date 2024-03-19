@@ -70,92 +70,96 @@ class _NamozTimeState extends ConsumerState<NamozTime> {
                   return ListView.builder(
                       itemCount: 1,
                       itemBuilder: (context, index) {
-                      return SizedBox(
-                        height: 500.h,
-                        child: ListView(
-                          children: [
-                            NamozListTile(
-                              hours: data[thisDay-12]?.saharlik.toString()??"",
-                              namozTiming: "bomdod".tr(),
-                              actionIcon: IconButton(
-                                onPressed: () {
-                                  ref
-                                      .read(volumeProvider1.notifier)
-                                      .state = !volumeOnOf1;
-                                },
-                                icon: volumeOnOf1
-                                    ? SvgPicture.asset(
-                                    "assets/svg/volume_on.svg")
-                                    : SvgPicture.asset(
-                                    "assets/svg/volume_off.svg"),
-                              ), color: AppColors.colorF4DEBD,
-                            ),
-                            NamozListTile(
-                              hours: data[thisDay-13]?.peshin.toString()??"",
-                              namozTiming: "peshin".tr(),
-                              actionIcon: IconButton(
-                                onPressed: () {
-                                  ref
-                                      .read(volumeProvider2.notifier)
-                                      .state = !volumeOnOf2;
-                                },
-                                icon: volumeOnOf2
-                                    ? SvgPicture.asset(
-                                    "assets/svg/volume_on.svg")
-                                    : SvgPicture.asset(
-                                    "assets/svg/volume_off.svg"),
-                              ), color: AppColors.colorF4DEBD,
-                            ),
-                            NamozListTile(
-                              hours: data[thisDay-12]?.asr.toString()??"",
-                              namozTiming: "asr".tr(),
-                              actionIcon: IconButton(
-                                onPressed: () {
-                                  ref
-                                      .read(volumeProvider3.notifier)
-                                      .state = !volumeOnOf3;
-                                },
-                                icon: volumeOnOf3
-                                    ? SvgPicture.asset(
-                                    "assets/svg/volume_on.svg")
-                                    : SvgPicture.asset(
-                                    "assets/svg/volume_off.svg"),
-                              ), color: AppColors.colorF4DEBD,
-                            ),
-                            NamozListTile(
-                              hours: data[thisDay-13]?.shom.toString()??"",
-                              namozTiming: "shom".tr(),
-                              actionIcon: IconButton(
-                                onPressed: () {
-                                  ref
-                                      .read(volumeProvider5.notifier)
-                                      .state = !volumeOnOf5;
-                                },
-                                icon: volumeOnOf5
-                                    ? SvgPicture.asset(
-                                    "assets/svg/volume_on.svg")
-                                    : SvgPicture.asset(
-                                    "assets/svg/volume_off.svg"),
-                              ), color: AppColors.colorF4DEBD,
-                            ),
-                            NamozListTile(
-                                hours: data[thisDay-12]?.xufton.toString()??"",
-                                namozTiming: "xufton".tr(),
-                                actionIcon: IconButton(
-                                  onPressed: () {
-                                    ref
-                                        .read(volumeProvider4.notifier)
-                                        .state = !volumeOnOf4;
-                                  },
-                                  icon: volumeOnOf4
-                                      ? SvgPicture.asset(
-                                      "assets/svg/volume_on.svg")
-                                      : SvgPicture.asset(
-                                      "assets/svg/volume_off.svg"),
-                                ), color: AppColors.colorF4DEBD,),
-                          ],
-                        ),
-                      );
+                     for(final item in data){
+                       if(item!.day==DateTime.now().day){
+                         return SizedBox(
+                           height: 500.h,
+                           child: ListView(
+                             children: [
+                               NamozListTile(
+                                 hours: item.saharlik.toString()??"",
+                                 namozTiming: "bomdod".tr(),
+                                 actionIcon: IconButton(
+                                   onPressed: () {
+                                     ref
+                                         .read(volumeProvider1.notifier)
+                                         .state = !volumeOnOf1;
+                                   },
+                                   icon: volumeOnOf1
+                                       ? SvgPicture.asset(
+                                       "assets/svg/volume_on.svg")
+                                       : SvgPicture.asset(
+                                       "assets/svg/volume_off.svg"),
+                                 ), color: AppColors.colorF4DEBD,
+                               ),
+                               NamozListTile(
+                                 hours: item.peshin.toString()??"",
+                                 namozTiming: "peshin".tr(),
+                                 actionIcon: IconButton(
+                                   onPressed: () {
+                                     ref
+                                         .read(volumeProvider2.notifier)
+                                         .state = !volumeOnOf2;
+                                   },
+                                   icon: volumeOnOf2
+                                       ? SvgPicture.asset(
+                                       "assets/svg/volume_on.svg")
+                                       : SvgPicture.asset(
+                                       "assets/svg/volume_off.svg"),
+                                 ), color: AppColors.colorF4DEBD,
+                               ),
+                               NamozListTile(
+                                 hours: item.asr.toString()??"",
+                                 namozTiming: "asr".tr(),
+                                 actionIcon: IconButton(
+                                   onPressed: () {
+                                     ref
+                                         .read(volumeProvider3.notifier)
+                                         .state = !volumeOnOf3;
+                                   },
+                                   icon: volumeOnOf3
+                                       ? SvgPicture.asset(
+                                       "assets/svg/volume_on.svg")
+                                       : SvgPicture.asset(
+                                       "assets/svg/volume_off.svg"),
+                                 ), color: AppColors.colorF4DEBD,
+                               ),
+                               NamozListTile(
+                                 hours: item.shom.toString()??"",
+                                 namozTiming: "shom".tr(),
+                                 actionIcon: IconButton(
+                                   onPressed: () {
+                                     ref
+                                         .read(volumeProvider5.notifier)
+                                         .state = !volumeOnOf5;
+                                   },
+                                   icon: volumeOnOf5
+                                       ? SvgPicture.asset(
+                                       "assets/svg/volume_on.svg")
+                                       : SvgPicture.asset(
+                                       "assets/svg/volume_off.svg"),
+                                 ), color: AppColors.colorF4DEBD,
+                               ),
+                               NamozListTile(
+                                 hours:item.xufton.toString()??"",
+                                 namozTiming: "xufton".tr(),
+                                 actionIcon: IconButton(
+                                   onPressed: () {
+                                     ref
+                                         .read(volumeProvider4.notifier)
+                                         .state = !volumeOnOf4;
+                                   },
+                                   icon: volumeOnOf4
+                                       ? SvgPicture.asset(
+                                       "assets/svg/volume_on.svg")
+                                       : SvgPicture.asset(
+                                       "assets/svg/volume_off.svg"),
+                                 ), color: AppColors.colorF4DEBD,),
+                             ],
+                           ),
+                         );
+                       }
+                     };
                       });
                 }, error: (error, st) {
                   return Text(

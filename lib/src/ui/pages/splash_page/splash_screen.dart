@@ -23,7 +23,9 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
- AppRouter.id(context, ScrollPage.id);
+
+
+           AppRouter.id(context, ScrollPage.id);
     });
   }
 

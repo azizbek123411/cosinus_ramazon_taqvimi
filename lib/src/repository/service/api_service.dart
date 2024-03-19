@@ -9,8 +9,7 @@ import '../models/pray_model.dart';
 
 
 class ApiService {
-  //https://islomapi.uz/api/monthly?region=Toshkent&month=4
-  //https://admin13.uz/api/mosque/
+
   static mosqueUrl() {
     final Uri uri = Uri.parse("https://admin13.uz/api/mosque/");
     return uri;
@@ -19,7 +18,6 @@ class ApiService {
   static Future<List<MosqueModel?>> getMosques() async {
     List<MosqueModel> mosques = [];
     final response = await get(mosqueUrl());
-    // log(response.body);
     if (response.statusCode == 200) {
       final dataList = jsonDecode(response.body);
       for (final item in dataList) {
@@ -32,6 +30,11 @@ class ApiService {
     }
     return mosques;
   }
+
+
+
+
+
 
   static Position? currentLocation;
   late bool servicePermission;
@@ -47,6 +50,11 @@ class ApiService {
     return await Geolocator.getCurrentPosition();
   }
 
+
+
+
+
+
   static Future calculateDistances() async {
     List<MosqueModel> distances = [];
     final response = await get(mosqueUrl());
@@ -55,8 +63,6 @@ class ApiService {
       for (final item in dataList) {
         try {
           double distanceInMeters = Geolocator.distanceBetween(
-              // currentLocation?.latitude??0,
-              // currentLocation?.longitude??0,
               41.2744398,
               69.2004313,
               MosqueModel.fromJson(item).lat,

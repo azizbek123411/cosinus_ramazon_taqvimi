@@ -25,6 +25,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   var box = Hive.openBox("address");
+  var timeBox = Hive.openBox("time");
   runApp(
     EasyLocalization(
       fallbackLocale: const Locale("uz", "UZ"),

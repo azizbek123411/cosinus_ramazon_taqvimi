@@ -21,7 +21,6 @@ class HomeAppBar extends ConsumerWidget {
     final _mybox = Hive.box("address");
 
     final provider = ref.watch(namozTimes);
-    final dayIndex = DateTime.now().day - 1;
     return Container(
       padding: Dis.only(lr: 8.w, top: 40.h),
       decoration: BoxDecoration(
@@ -34,48 +33,54 @@ class HomeAppBar extends ConsumerWidget {
       child: AppBar(
         backgroundColor: Colors.transparent,
         title: provider.when(data: (data) {
-          if (DateTime.now().month > 10) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}",
-                  style: AppTextStyle.instance.w700.copyWith(
-                    fontSize: FontSizeConst.instance.largeFont,
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-                Text(
-                  "${{dayIndex-10}} ${data[dayIndex]!.hijriyOy}",
-                  style: AppTextStyle.instance.w600.copyWith(
-                    fontSize: FontSizeConst.instance.smallFont,
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-              ],
-            );
+          for(final item in data){
+            if(item!.day==DateTime.now().day){
+              if (DateTime.now().month > 10) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${item.day}.${DateTime.now().month}.${DateTime.now().year}",
+                      style: AppTextStyle.instance.w700.copyWith(
+                        fontSize: FontSizeConst.instance.largeFont,
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                    Text(
+                      "${item.hijriyKun} ${item.hijriyOy}",
+                      style: AppTextStyle.instance.w600.copyWith(
+                        fontSize: FontSizeConst.instance.smallFont,
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                  ],
+                );
+              }
+              else {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${DateTime.now().day}.0${DateTime.now().month}.${DateTime.now().year}",
+                      style: AppTextStyle.instance.w700.copyWith(
+                        fontSize: FontSizeConst.instance.largeFont,
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                    Text(
+                      "${item.hijriyKun} ${item.hijriyOy}",
+                      style: AppTextStyle.instance.w600.copyWith(
+                        fontSize: FontSizeConst.instance.smallFont,
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                  ],
+                );
+              }
+            }
+
           }
-          else {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "${DateTime.now().day}.0${DateTime.now().month}.${DateTime.now().year}",
-                  style: AppTextStyle.instance.w700.copyWith(
-                    fontSize: FontSizeConst.instance.largeFont,
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-                Text(
-                  "${data[dayIndex]!.hijriyKun} ${data[dayIndex]!.hijriyOy}",
-                  style: AppTextStyle.instance.w600.copyWith(
-                    fontSize: FontSizeConst.instance.smallFont,
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-              ],
-            );
-          }
+
         }, error: (error, st) {
           log("AppBar error:$error",stackTrace: st);
           // log(error.toString());

@@ -4,6 +4,7 @@ class PrayModel {
   String weekday;
   String? hijriyOy;
   int? hijriyKun;
+  int? day;
   String saharlik;
   String quyosh;
   String peshin;
@@ -17,6 +18,7 @@ class PrayModel {
     required this.date,
     this.hijriyKun,
     this.hijriyOy,
+    this.day,
     required this.quyosh,
     required this.asr,
     required this.peshin,
@@ -29,6 +31,7 @@ class PrayModel {
     return PrayModel(
       weekday: json['weekday'],
       region: json['region'],
+      day: json['day'],
       date: DateTime.parse(json['date']),
       hijriyKun: json['hijri_date']['day'],
       hijriyOy: json['hijri_date']['month'],
